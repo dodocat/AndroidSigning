@@ -49,8 +49,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:1.0.0'
         classpath 'org.quanqi:android-signing:0.1.1'
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 ```
@@ -67,6 +65,18 @@ Now in your signingConfigs these signingConfig were available:
 * keystore2_alias2
 
 Enjoy.
+
+## Change log
+
+## v0.1.0
+* First version published basic feature.
+
+## v0.1.1
+* minor fix.
+
+## v0.1.2
+* add default key file location.
+* change java sourceCompatibility to 1.6
 
 ## LICENSE
 

@@ -11,6 +11,20 @@ class AndroidApplicationSigning implements Plugin<Project> {
 
     public static final String KEY_ANDROID_KEY_STORE_CONFIG = "ANDROID_KEY_STORE_CONFIG"
 
+    def String adjustPath(String path) {
+        if (path.startsWith('~/')) {
+            // todo check this.
+            path = path.replaceFirst('~', System.getProperty('user.home'))
+            return path
+        } else {
+            def file = new File(path)
+            if(file.absolute) {
+                return path
+            } else {
+                return new File(System.getProperty('user.home', '.android_keys/' + path)).absolutePath
+            }
+        }
+    }
 
     @Override
     void apply(Project project) {
@@ -36,6 +50,7 @@ class AndroidApplicationSigning implements Plugin<Project> {
         for (def keyStore : keyStores.children()) {
             def keyStoreName = keyStore.getProperty('store-name').text()
             def keyStorePath = keyStore.getProperty('store-path').text()
+            keyStorePath = adjustPath(keyStorePath)
             def keyStorePassword = keyStore.getProperty('store-password').text()
 
             for (def alias : keyStore.getProperty('aliases').children()) {

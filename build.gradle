@@ -2,8 +2,9 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
+sourceCompatibility = 1.6
 group = 'org.quanqi'
-version = "0.1.1"
+version = "0.1.2"
 
 repositories {
     mavenCentral()

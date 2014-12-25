@@ -1,4 +1,4 @@
-package com.org.quanqi.gradle.signing
+package org.quanqi.gradle.signing
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

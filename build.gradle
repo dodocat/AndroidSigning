@@ -3,7 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 group = 'org.quanqi'
-version = "0.1.0"
+version = "0.1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -53,12 +53,12 @@ uploadArchives {
 
             if (project.hasProperty('NEXUS_USERNAME')) {
                 snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
-                    authentication(userName: project.getPropery('NEXUS_USERNAME'),
+                    authentication(userName: project.getProperty('NEXUS_USERNAME'),
                             password: project.getProperty('NEXUS_PASSWORD'))
                 }
 
                 repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
-                    authentication(userName: project.getPropery('NEXUS_USERNAME'),
+                    authentication(userName: project.getProperty('NEXUS_USERNAME'),
                             password: project.getProperty('NEXUS_PASSWORD'))
                 }
             }

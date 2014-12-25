@@ -39,6 +39,10 @@ Default config file is `~/.android_key_store.xml`, sample config as:
 
 ```
 
+The default key files folder is `~/.android_keys` if key files in there.
+Only file name is needed in the config xml.
+
+
 In top level `build.gradle` add this to classpath
 ``` groovy
 buildscript {

@@ -21,7 +21,7 @@ class AndroidApplicationSigning implements Plugin<Project> {
             if(file.absolute) {
                 return path
             } else {
-                return new File(System.getProperty('user.home', '.android_keys/' + path)).absolutePath
+                return new File(System.getProperty('user.home'), '.android_keys/' + path).absolutePath
             }
         }
     }

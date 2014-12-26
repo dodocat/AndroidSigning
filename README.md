@@ -82,6 +82,9 @@ Enjoy.
 * add default key file location.
 * change java sourceCompatibility to 1.6
 
+## v0.1.3
+* fix default path error.
+
 ## LICENSE
 
 APACHE-2

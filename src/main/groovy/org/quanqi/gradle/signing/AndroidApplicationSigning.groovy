@@ -11,9 +11,8 @@ class AndroidApplicationSigning implements Plugin<Project> {
 
     public static final String KEY_ANDROID_KEY_STORE_CONFIG = "ANDROID_KEY_STORE_CONFIG"
 
-    def String adjustPath(String path) {
+    static def adjustPath(path) {
         if (path.startsWith('~/')) {
-            // todo check this.
             path = path.replaceFirst('~', System.getProperty('user.home'))
             return path
         } else {
@@ -28,12 +27,13 @@ class AndroidApplicationSigning implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
+        project.extensions.create("key_store", AndroidApplicationSigningExtension.class)
 
         if (!project.plugins.findPlugin("com.android.application") && !project.plugins.findPlugin("android")) {
             throw new ProjectConfigurationException("The android plugin must be applied to the project", null)
         }
 
-        def keysXmlFile = null
+        def keysXmlFile
         if (project.hasProperty(KEY_ANDROID_KEY_STORE_CONFIG)) {
             keysXmlFile = new File(KEY_ANDROID_KEY_STORE_CONFIG)
         } else {
@@ -41,7 +41,8 @@ class AndroidApplicationSigning implements Plugin<Project> {
         }
 
         if (!keysXmlFile.exists()) {
-            throw new FileNotFoundException(keysXmlFile.getAbsolutePath() + " dose not exits.")
+            println("Signing config file not exist.")
+            return
         }
 
         def slurper = new XmlSlurper();
